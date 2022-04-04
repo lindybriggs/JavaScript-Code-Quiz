@@ -160,6 +160,8 @@ function choseD (){
     // WHEN all questions are answered or the timer reaches 0
     // THEN the game is over
 
+let finalScore = document.querySelector(".finalScore");
+
 function quizDone(){
     welcomeMessage.style.display = "none";
     quizText.style.display = "none";
@@ -167,8 +169,15 @@ function quizDone(){
     answerStatus.style.display = "none";
     quizOverInfo.style.display = "block";
 
+    finalScore.textContent = "Your final score is: " + questionsRight + "/10";
 }
 
 // STEP 5:
     // WHEN the game is over
-    // THEN I can save my initials and my score
+    // THEN I can save my initials and my score~
+
+let submitButton = document.querySelector(".submit");
+
+submitButton.addEventListener("click", function () {
+    location.href = "./scoreboard.html";
+});
