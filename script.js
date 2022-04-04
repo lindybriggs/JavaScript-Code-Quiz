@@ -4,7 +4,9 @@ let timerEl = document.querySelector("#timer");
 let welcomeMessage = document.querySelector(".welcome");
 let quizText = document.querySelector(".quiz");
 let answerStatus = document.querySelector(".correctWrong");
+let quizOverInfo = document.querySelector(".saveInfo");
 quizText.style.display = "none";
+quizOverInfo.style.display = "none";
 
 // Declare function to subtract 1 from timer every second to update timerEL to display timer's current value. Clears at 0.
 
@@ -17,6 +19,7 @@ function timerId() {
 
         if (timer === 0) {
             clearInterval(timerId);
+            quizDone();
         }
 
     }, 1000)
@@ -27,10 +30,11 @@ function timerId() {
 // THEN a timer starts and I am presented with a question
 let startButton = document.querySelector(".beginButton");
 
-let newAttempt = function () {
+function newAttempt() {
     timerId();
     console.log("hello");
     welcomeMessage.style.display = "none";
+    quizOverInfo.style.display = "none";
     quizText.style.display = "block";
 
     startQuiz();
@@ -52,6 +56,7 @@ let choiceB = document.querySelector(".b");
 let choiceC = document.querySelector(".c");
 let choiceD = document.querySelector(".d");
 let currentQuestion = 0
+let questionsRight = 0
 
 // Array of questions, with each question containing it's own set of variables.
 let questions = [
@@ -117,15 +122,20 @@ function checkAnswer(answer) {
 
     if (questions[currentQuestion].choices[answer] === questions[currentQuestion].answer){
         answerStatus.textContent = "Correct!"
+        questionsRight++;
     } else {
         answerStatus.textContent = "Wrong. 5 seconds cut from timer."
         timer-=5;
         timerEl.textContent = timer;
     }
 
-
     currentQuestion++;
-    askQuestions();
+    if (currentQuestion < questions.length){
+        askQuestions();
+    } else {
+        quizDone();
+    }
+
 }
 
 choiceA.addEventListener("click", choseA);
@@ -149,7 +159,15 @@ function choseD (){
 // STEP 4:
     // WHEN all questions are answered or the timer reaches 0
     // THEN the game is over
-    // (probably do an if statement, with timer equaling zero & questions being done-idk how yet-and statement brings to scoreboard.html)
+
+function quizDone(){
+    welcomeMessage.style.display = "none";
+    quizText.style.display = "none";
+    timerEl.style.display = "none";
+    answerStatus.style.display = "none";
+    quizOverInfo.style.display = "block";
+
+}
 
 // STEP 5:
     // WHEN the game is over
