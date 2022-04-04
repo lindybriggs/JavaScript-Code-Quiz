@@ -3,10 +3,13 @@
 let timerEl = document.querySelector("#timer");
 let welcomeMessage = document.querySelector(".welcome");
 let quizText = document.querySelector(".quiz");
+let scoreboard = document.querySelector(".scoreboard");
 let answerStatus = document.querySelector(".correctWrong");
 let quizOverInfo = document.querySelector(".saveInfo");
+let initalsInput = document.querySelector("#initials");
 quizText.style.display = "none";
 quizOverInfo.style.display = "none";
+scoreboard.style.display = "none";
 
 // Declare function to subtract 1 from timer every second to update timerEL to display timer's current value. Clears at 0.
 
@@ -178,6 +181,29 @@ function quizDone(){
 
 let submitButton = document.querySelector(".submit");
 
-submitButton.addEventListener("click", function () {
-    location.href = "./scoreboard.html";
-});
+submitButton.addEventListener("click", function(event){
+    event.preventDefault();
+
+    let userScore = {
+        initials: initalsInput.value,
+        score: questionsRight.value,
+    }
+    localStorage.setItem("userScore", JSON.stringify(userScore));
+    showScores();
+})
+
+function showScores(){
+    quizText.style.display = "none";
+    quizOverInfo.style.display = "none";
+    scoreboard.style.display = "block";
+    
+    let lastScore = JSON.parse(localStorage.getItem("userScore"));
+    if (lastScore !== null){
+        document.querySelector(".userDetails").textContent = lastScore.initials + 
+        " got " + questionsRight + "/10"
+    }
+}
+
+// submitButton.addEventListener("click", function () {
+//     location.href = "./scoreboard.html";
+// });
