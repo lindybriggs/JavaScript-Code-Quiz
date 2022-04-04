@@ -61,8 +61,40 @@ let questions = [
         answer: "c. <script>",
     }, {
         question: "Which of the following is a primitive data type?",
-        choices: ["a. number", "b. string", "c. boolean", "d. all of the above"],
-        answer: "d. all of the above",
+        choices: ["a. Number", "b. String", "c. Boolean", "d. All of the above"],
+        answer: "d. All of the above",
+    }, {
+        question: "What is camelCase?",
+        choices: ["a. How we organize functions", "b. Another term for 'if statements'", "c. Writing phrases with lowercase letters first followed immediately by capital letters", "d. A nick name for Javascript"],
+        answer: "c. Writing phrases with lowercase letters first followed immediately by capital letters",
+    }, {
+        question: "Which is true regarding primitives?",
+        choices: ["a. Primitives are data", "b. Primitives are not objects", "c. Primitives have no methods", "d. All of the above"],
+        answer: "d. All of the above",
+    }, {
+        question: "Which of the following conditions is true?",
+        choices: ["a. 10 === 10", "b. 10 === ten", "c. 10 == ten", "d. 10 !=== 10"],
+        answer: "a. 10 === 10",
+    }, {
+        question: "Which of the following is not an aritmetic operator?",
+        choices: ["a. +", "b. ~", "c. -", "d. *"],
+        answer: "b. ~",
+    }, {
+        question: "What is the Array() constructor used for?",
+        choices: ["a. To build tables", "b. To store a collection of items under a single variable", "c. To combine lists", "d. To call functions"],
+        answer: "b. To store a collection of items under a single variable",
+    }, {
+        question: "Which would generate a random number?",
+        choices: ["a. Math.random", "b. Math.pick", "c. Math.floor", "d. Math.number"],
+        answer: "a. Math.random",
+    }, {
+        question: "Which is the correct syntax for referring to an external script called '123.js'?",
+        choices: ["a. <script name='123.js'>", "b. <script href='123.js>", "c. <script '123.js'>", "d. <script src='123.js'"],
+        answer: "d. <script src='123.js'",
+    }, {
+        question: "Who invented Javascript?",
+        choices: ["a. Hakon Wium Lie", "b. Tim Berners-Lee", "c. Brendan Eich", "d. Bill Gates"],
+        answer: "c. Brendan Eich",
     }
 ]
 
