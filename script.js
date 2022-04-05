@@ -1,5 +1,7 @@
 // GIVEN I am taking a code quiz...
 
+// Define variables based on html elements, id's, classes, etc.
+// Set display to none for components to be hidden at certain stages of quiz
 let timerEl = document.querySelector("#timer");
 let welcomeMessage = document.querySelector(".welcome");
 let quizText = document.querySelector(".quiz");
@@ -32,6 +34,9 @@ function timerId() {
 // STEP 1:
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
+// //////////////////////////////////////////////////////
+// Clicking button calls newAttempt function --> timer function called --> displays updated --> startQuiz function called.
+// Additional button variable defined.
 let startButton = document.querySelector(".beginButton");
 
 function newAttempt() {
@@ -43,6 +48,7 @@ function newAttempt() {
 
     startQuiz();
 }
+
 startButton.addEventListener("click", newAttempt);
 
 function startQuiz() {
@@ -54,6 +60,8 @@ function startQuiz() {
 // WHEN I answer a question
 // THEN I am presented with another question
 
+// Additional variables defined for html elements, id's, classes (which are buttons).
+
 let question = document.querySelector("#question");
 let choiceA = document.querySelector(".a");
 let choiceB = document.querySelector(".b");
@@ -62,7 +70,7 @@ let choiceD = document.querySelector(".d");
 let currentQuestion = 0
 let questionsRight = 0
 
-// Array of questions, with each question containing it's own set of variables.
+// Array of questions, each containing it's own set of variables.
 let questions = [
     {
         question: "Which HTML tag do we use to link Javascript files?",
@@ -185,6 +193,7 @@ let clearScoresButton = document.querySelector(".clearScores");
 let scoresList = document.querySelector(".scores-list");
 let scores = [];
 
+// Using for loop based on finalScores. Creating list items.
 function showScores(){
     console.log(scores)
     console.log(scores.length)
@@ -213,19 +222,9 @@ function showScores(){
 
 };
 
-function init(){
-    // scoreboard.style.display = "block";
-    let storedScores = JSON.parse(localStorage.getItem("scores"));
-    console.log(storedScores);
-
-    if (storedScores !== null){
-        scores = storedScores;
-    }
-    showScores();
-}
-
+// Saving information to local storage.
 function storeScores(){
-// need to start with nothing in local storage
+// Need to start with nothing in local storage.
     if (localStorage.length === 0){
         localStorage.setItem("scores", "[]")
     }
@@ -238,6 +237,7 @@ function storeScores(){
     localStorage.setItem("scores", JSON.stringify(newScores));
 }
 
+// Upon click of submit button, additional functions called and userScore begins building.
 submitButton.addEventListener("click", function(event){
     event.preventDefault();
     let initialsText = initialsInput.value;
@@ -256,9 +256,3 @@ submitButton.addEventListener("click", function(event){
     storeScores();
     showScores();
 });
-
-// init();
-
-// submitButton.addEventListener("click", function () {
-//     location.href = "./scoreboard.html";
-// });
