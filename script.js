@@ -6,7 +6,7 @@ let quizText = document.querySelector(".quiz");
 let scoreboard = document.querySelector(".scoreboard");
 let answerStatus = document.querySelector(".correctWrong");
 let quizOverInfo = document.querySelector(".saveInfo");
-let initalsInput = document.querySelector("#initials");
+let initialsInput = document.querySelector("#initials");
 quizText.style.display = "none";
 quizOverInfo.style.display = "none";
 scoreboard.style.display = "none";
@@ -179,30 +179,98 @@ function quizDone(){
     // WHEN the game is over
     // THEN I can save my initials and my score~
 
+// let submitButton = document.querySelector(".submit");
+// let userScores = [];
+
+// submitButton.addEventListener("click", function(event){
+//     event.preventDefault();
+
+//     let userScore = {
+//         initialst initialsInput.value,
+//         score: questionsRight.value,
+//     }
+//     userScores.push(userScore);
+//     localStorage.setItem("userScores", JSON.stringify(userScores));
+//     showScores();
+// })
+
+// function showScores(){
+//     quizText.style.display = "none";
+//     quizOverInfo.style.display = "none";
+//     scoreboard.style.display = "block";
+    
+//     let lastScore = JSON.parse(localStorage.getItem("userScore"));
+//     if (lastScore !== null){
+//         document.querySelector(".userDetails").textContent = lastScore.initials + 
+//         " got " + questionsRight + "/10"
+//     }
+// }
+
 let submitButton = document.querySelector(".submit");
+let clearScoresButton = document.querySelector(".clearScores");
+let scoresList = document.querySelector(".scores-list");
+let scores = [];
+
+function showScores(){
+    console.log(scores)
+    welcomeMessage.style.display = "none";
+    quizText.style.display = "none";
+    timerEl.style.display = "none";
+    answerStatus.style.display = "none";
+    quizOverInfo.style.display = "none";
+    scoreboard.style.display = "block";
+
+    scoresList.innerHTML = "";
+
+    for (let i = 0; i < scores.length; i++){
+        let score = scores[i];
+        console.log(score)
+
+        let li = document.createElement("li");
+        li.textContent = score.initials +-+score.score;
+
+        scoresList.appendChild(li);
+    }
+
+};
+
+function init(){
+    // scoreboard.style.display = "block";
+    let storedScores = JSON.parse(localStorage.getItem("scores"));
+    console.log(storedScores);
+
+    if (storedScores !== null){
+        scores = storedScores;
+    }
+    showScores();
+}
+
+function storeScores(){
+    // one for where i'm storing user input 
+    // next would be score
+    localStorage.setItem("scores", JSON.stringify(scores));
+}
 
 submitButton.addEventListener("click", function(event){
     event.preventDefault();
+    let initialsText = initialsInput.value;
 
-    let userScore = {
-        initials: initalsInput.value,
-        score: questionsRight.value,
+    if (initialsText === ""){
+        return;
+    };
+        let userScore = {
+        initials: initialsText,
+        score: questionsRight
     }
-    localStorage.setItem("userScore", JSON.stringify(userScore));
+
+    scores.push(userScore);
+    initialsInput.value = "";
+
+    storeScores();
     showScores();
-})
+});
 
-function showScores(){
-    quizText.style.display = "none";
-    quizOverInfo.style.display = "none";
-    scoreboard.style.display = "block";
-    
-    let lastScore = JSON.parse(localStorage.getItem("userScore"));
-    if (lastScore !== null){
-        document.querySelector(".userDetails").textContent = lastScore.initials + 
-        " got " + questionsRight + "/10"
-    }
-}
+init();
 
 // submitButton.addEventListener("click", function () {
 //     location.href = "./scoreboard.html";
