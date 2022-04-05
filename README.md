@@ -1,7 +1,8 @@
 # Homework #4 Web APIs: Code Quiz
 
 ## Screenshot
-![lindybriggs github io_hw4-web-APIs-code-quiz-due-4-5](https://user-images.githubusercontent.com/101146153/161855198-9467739d-63bf-4f95-8a3d-e9d3a7ac1c56.mov)
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/101146153/161860548-e2cd4ad5-1d5b-4d7e-94c1-2939a0339719.gif)
+
 
 ## Description
 
