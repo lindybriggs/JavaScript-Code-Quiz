@@ -213,6 +213,11 @@ let scores = [];
 
 function showScores(){
     console.log(scores)
+    console.log(scores.length)
+
+    let finalScores = JSON.parse(localStorage.getItem("scores"))
+    console.log(finalScores)
+
     welcomeMessage.style.display = "none";
     quizText.style.display = "none";
     timerEl.style.display = "none";
@@ -222,8 +227,8 @@ function showScores(){
 
     scoresList.innerHTML = "";
 
-    for (let i = 0; i < scores.length; i++){
-        let score = scores[i];
+    for (let i = 0; i < finalScores.length; i++){
+        let score = finalScores[i];
         console.log(score)
 
         let li = document.createElement("li");
@@ -246,9 +251,17 @@ function init(){
 }
 
 function storeScores(){
-    // one for where i'm storing user input 
-    // next would be score
-    localStorage.setItem("scores", JSON.stringify(scores));
+// need to start with nothing in local storage
+    if (localStorage.length === 0){
+        localStorage.setItem("scores", "[]")
+    }
+
+    let oldScores = localStorage.getItem("scores");
+    oldScores = JSON.parse(oldScores);
+    oldScores.push(scores[0]);
+    let newScores = oldScores
+
+    localStorage.setItem("scores", JSON.stringify(newScores));
 }
 
 submitButton.addEventListener("click", function(event){
@@ -270,7 +283,7 @@ submitButton.addEventListener("click", function(event){
     showScores();
 });
 
-init();
+// init();
 
 // submitButton.addEventListener("click", function () {
 //     location.href = "./scoreboard.html";
