@@ -1,3 +1,10 @@
 * {
     text-align: center;
 }
+
+#timer {
+    position: fixed;
+    right: 3rem;
+    top: 0.5rem;
+    font-size: 2rem;
+}

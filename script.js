@@ -7,6 +7,7 @@ let scoreboard = document.querySelector(".scoreboard");
 let answerStatus = document.querySelector(".correctWrong");
 let quizOverInfo = document.querySelector(".saveInfo");
 let initialsInput = document.querySelector("#initials");
+let enteredInitials = initialsInput.value;
 quizText.style.display = "none";
 quizOverInfo.style.display = "none";
 scoreboard.style.display = "none";
@@ -179,33 +180,6 @@ function quizDone(){
     // WHEN the game is over
     // THEN I can save my initials and my score~
 
-// let submitButton = document.querySelector(".submit");
-// let userScores = [];
-
-// submitButton.addEventListener("click", function(event){
-//     event.preventDefault();
-
-//     let userScore = {
-//         initialst initialsInput.value,
-//         score: questionsRight.value,
-//     }
-//     userScores.push(userScore);
-//     localStorage.setItem("userScores", JSON.stringify(userScores));
-//     showScores();
-// })
-
-// function showScores(){
-//     quizText.style.display = "none";
-//     quizOverInfo.style.display = "none";
-//     scoreboard.style.display = "block";
-    
-//     let lastScore = JSON.parse(localStorage.getItem("userScore"));
-//     if (lastScore !== null){
-//         document.querySelector(".userDetails").textContent = lastScore.initials + 
-//         " got " + questionsRight + "/10"
-//     }
-// }
-
 let submitButton = document.querySelector(".submit");
 let clearScoresButton = document.querySelector(".clearScores");
 let scoresList = document.querySelector(".scores-list");
@@ -232,7 +206,7 @@ function showScores(){
         console.log(score)
 
         let li = document.createElement("li");
-        li.textContent = score.initials +-+score.score;
+        li.textContent = score.initials +-+ score.score;
 
         scoresList.appendChild(li);
     }
